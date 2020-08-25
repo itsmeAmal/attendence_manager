@@ -114,7 +114,7 @@
                                   <Component id="comboGender" alignment="0" max="32767" attributes="0"/>
                                   <Component id="jLabel12" alignment="0" max="32767" attributes="0"/>
                                   <Component id="jLabel10" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="txtGender" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="txtAddress" alignment="0" max="32767" attributes="0"/>
                                   <Component id="calBirthday" min="-2" pref="251" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -123,21 +123,21 @@
                                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                           <Component id="jLabel9" alignment="0" pref="307" max="32767" attributes="0"/>
                                           <Component id="jLabel17" alignment="0" max="32767" attributes="0"/>
-                                          <Component id="txtDetail" alignment="0" min="-2" pref="250" max="-2" attributes="0"/>
-                                          <Component id="txtDetail1" alignment="0" min="-2" pref="250" max="-2" attributes="0"/>
+                                          <Component id="txtMobile" alignment="0" min="-2" pref="250" max="-2" attributes="0"/>
+                                          <Component id="txtHome" alignment="0" min="-2" pref="250" max="-2" attributes="0"/>
                                       </Group>
                                       <EmptySpace pref="114" max="32767" attributes="0"/>
                                       <Component id="jButton4" min="-2" pref="96" max="-2" attributes="0"/>
                                   </Group>
                                   <Group type="102" attributes="0">
                                       <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                          <Component id="txtDetail5" alignment="0" max="32767" attributes="0"/>
+                                          <Component id="txtEmail" alignment="0" max="32767" attributes="0"/>
                                           <Component id="jLabel11" alignment="0" pref="249" max="32767" attributes="0"/>
                                       </Group>
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                           <Component id="jLabel18" pref="250" max="32767" attributes="0"/>
-                                          <Component id="txtDetail2" max="32767" attributes="0"/>
+                                          <Component id="txtRemark" max="32767" attributes="0"/>
                                       </Group>
                                   </Group>
                               </Group>
@@ -171,23 +171,23 @@
                                   <Group type="102" alignment="0" attributes="0">
                                       <Component id="jLabel11" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="txtDetail5" min="-2" pref="44" max="-2" attributes="0"/>
+                                      <Component id="txtEmail" min="-2" pref="44" max="-2" attributes="0"/>
                                   </Group>
                                   <Group type="102" alignment="1" attributes="0">
                                       <Component id="jLabel18" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace min="-2" max="-2" attributes="0"/>
-                                      <Component id="txtDetail2" min="-2" pref="44" max="-2" attributes="0"/>
+                                      <Component id="txtRemark" min="-2" pref="44" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                               <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
                               <Component id="jLabel9" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="-2" max="-2" attributes="0"/>
-                              <Component id="txtDetail" min="-2" pref="44" max="-2" attributes="0"/>
+                              <Component id="txtMobile" min="-2" pref="44" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="jLabel17" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="-2" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="txtDetail1" pref="44" max="32767" attributes="0"/>
+                                  <Component id="txtHome" pref="44" max="32767" attributes="0"/>
                                   <Component id="jButton4" max="32767" attributes="0"/>
                               </Group>
                           </Group>
@@ -218,7 +218,7 @@
                               <Component id="calBirthday" min="-2" pref="44" max="-2" attributes="0"/>
                               <Group type="102" alignment="0" attributes="0">
                                   <EmptySpace min="142" pref="142" max="-2" attributes="0"/>
-                                  <Component id="txtGender" min="-2" pref="44" max="-2" attributes="0"/>
+                                  <Component id="txtAddress" min="-2" pref="44" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
@@ -298,7 +298,7 @@
                 <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
               </AuxValues>
             </Component>
-            <Component class="javax.swing.JTextField" name="txtDetail">
+            <Component class="javax.swing.JTextField" name="txtMobile">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Ubuntu" size="18" style="0"/>
@@ -411,7 +411,7 @@
                 <Property name="text" type="java.lang.String" value="Contact - Home"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="txtDetail1">
+            <Component class="javax.swing.JTextField" name="txtHome">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Ubuntu" size="18" style="0"/>
@@ -425,7 +425,7 @@
                 </Property>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="txtDetail2">
+            <Component class="javax.swing.JTextField" name="txtRemark">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Ubuntu" size="18" style="0"/>
@@ -571,7 +571,7 @@
                 <Property name="text" type="java.lang.String" value="Delete"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="txtGender">
+            <Component class="javax.swing.JTextField" name="txtAddress">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Ubuntu" size="18" style="0"/>
@@ -596,7 +596,7 @@
                 <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="calBirthdayKeyReleased"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JTextField" name="txtDetail5">
+            <Component class="javax.swing.JTextField" name="txtEmail">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Ubuntu" size="18" style="0"/>
@@ -614,6 +614,9 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Save"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton4ActionPerformed"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>

@@ -5,6 +5,13 @@
  */
 package com.sams.ui;
 
+import com.sams.controller.StudentController;
+import com.sams.controller.commonController;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Amal
@@ -16,6 +23,22 @@ public class manageStudents extends javax.swing.JFrame {
      */
     public manageStudents() {
         initComponents();
+    }
+
+    private void addStudent() {
+
+        if (txtFullName.getText().trim().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Please enter full name !", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        try {
+            StudentController.addStudent(txtFullName.getText().trim(), txtNameWithInitials.getText().trim(),
+                    txtNic.getText().trim(), commonController.getMysqlDateFromJDateChooser(calBirthday),
+                    comboGender.getSelectedItem().toString(), txtAddress.getText().trim(), txtMobile.getText().trim(),
+                    txtHome.getText().trim(), txtEmail.getText().trim(), txtRemark.getText().trim(), "");
+        } catch (SQLException ex) {
+            Logger.getLogger(manageStudents.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -33,7 +56,7 @@ public class manageStudents extends javax.swing.JFrame {
         txtNic = new javax.swing.JTextField();
         txtNameWithInitials = new javax.swing.JTextField();
         comboGender = new javax.swing.JComboBox<>();
-        txtDetail = new javax.swing.JTextField();
+        txtMobile = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
@@ -43,8 +66,8 @@ public class manageStudents extends javax.swing.JFrame {
         jLabel15 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
-        txtDetail1 = new javax.swing.JTextField();
-        txtDetail2 = new javax.swing.JTextField();
+        txtHome = new javax.swing.JTextField();
+        txtRemark = new javax.swing.JTextField();
         jLabel18 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
@@ -53,9 +76,9 @@ public class manageStudents extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
-        txtGender = new javax.swing.JTextField();
+        txtAddress = new javax.swing.JTextField();
         calBirthday = new com.toedter.calendar.JDateChooser();
-        txtDetail5 = new javax.swing.JTextField();
+        txtEmail = new javax.swing.JTextField();
         jButton4 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -92,10 +115,10 @@ public class manageStudents extends javax.swing.JFrame {
         comboGender.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Male", "Female" }));
         comboGender.setToolTipText("Batch");
 
-        txtDetail.setFont(new java.awt.Font("Ubuntu", 0, 18)); // NOI18N
-        txtDetail.setToolTipText("Details / Remarks");
-        txtDetail.setSelectedTextColor(new java.awt.Color(0, 0, 0));
-        txtDetail.setSelectionColor(new java.awt.Color(255, 255, 0));
+        txtMobile.setFont(new java.awt.Font("Ubuntu", 0, 18)); // NOI18N
+        txtMobile.setToolTipText("Details / Remarks");
+        txtMobile.setSelectedTextColor(new java.awt.Color(0, 0, 0));
+        txtMobile.setSelectionColor(new java.awt.Color(255, 255, 0));
 
         jLabel9.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(0, 0, 0));
@@ -133,15 +156,15 @@ public class manageStudents extends javax.swing.JFrame {
         jLabel17.setForeground(new java.awt.Color(0, 0, 0));
         jLabel17.setText("Contact - Home");
 
-        txtDetail1.setFont(new java.awt.Font("Ubuntu", 0, 18)); // NOI18N
-        txtDetail1.setToolTipText("Details / Remarks");
-        txtDetail1.setSelectedTextColor(new java.awt.Color(0, 0, 0));
-        txtDetail1.setSelectionColor(new java.awt.Color(255, 255, 0));
+        txtHome.setFont(new java.awt.Font("Ubuntu", 0, 18)); // NOI18N
+        txtHome.setToolTipText("Details / Remarks");
+        txtHome.setSelectedTextColor(new java.awt.Color(0, 0, 0));
+        txtHome.setSelectionColor(new java.awt.Color(255, 255, 0));
 
-        txtDetail2.setFont(new java.awt.Font("Ubuntu", 0, 18)); // NOI18N
-        txtDetail2.setToolTipText("Details / Remarks");
-        txtDetail2.setSelectedTextColor(new java.awt.Color(0, 0, 0));
-        txtDetail2.setSelectionColor(new java.awt.Color(255, 255, 0));
+        txtRemark.setFont(new java.awt.Font("Ubuntu", 0, 18)); // NOI18N
+        txtRemark.setToolTipText("Details / Remarks");
+        txtRemark.setSelectedTextColor(new java.awt.Color(0, 0, 0));
+        txtRemark.setSelectionColor(new java.awt.Color(255, 255, 0));
 
         jLabel18.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel18.setForeground(new java.awt.Color(0, 0, 0));
@@ -207,10 +230,10 @@ public class manageStudents extends javax.swing.JFrame {
 
         jButton3.setText("Delete");
 
-        txtGender.setFont(new java.awt.Font("Ubuntu", 0, 18)); // NOI18N
-        txtGender.setToolTipText("Details / Remarks");
-        txtGender.setSelectedTextColor(new java.awt.Color(0, 0, 0));
-        txtGender.setSelectionColor(new java.awt.Color(255, 255, 0));
+        txtAddress.setFont(new java.awt.Font("Ubuntu", 0, 18)); // NOI18N
+        txtAddress.setToolTipText("Details / Remarks");
+        txtAddress.setSelectedTextColor(new java.awt.Color(0, 0, 0));
+        txtAddress.setSelectionColor(new java.awt.Color(255, 255, 0));
 
         calBirthday.setToolTipText("Week Begining Date");
         calBirthday.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -234,12 +257,17 @@ public class manageStudents extends javax.swing.JFrame {
             }
         });
 
-        txtDetail5.setFont(new java.awt.Font("Ubuntu", 0, 18)); // NOI18N
-        txtDetail5.setToolTipText("Details / Remarks");
-        txtDetail5.setSelectedTextColor(new java.awt.Color(0, 0, 0));
-        txtDetail5.setSelectionColor(new java.awt.Color(255, 255, 0));
+        txtEmail.setFont(new java.awt.Font("Ubuntu", 0, 18)); // NOI18N
+        txtEmail.setToolTipText("Details / Remarks");
+        txtEmail.setSelectedTextColor(new java.awt.Color(0, 0, 0));
+        txtEmail.setSelectionColor(new java.awt.Color(255, 255, 0));
 
         jButton4.setText("Save");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -262,7 +290,7 @@ public class manageStudents extends javax.swing.JFrame {
                             .addComponent(comboGender, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(txtGender)
+                            .addComponent(txtAddress)
                             .addComponent(calBirthday, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -270,18 +298,18 @@ public class manageStudents extends javax.swing.JFrame {
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, 307, Short.MAX_VALUE)
                                     .addComponent(jLabel17, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(txtDetail, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtDetail1, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(txtMobile, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtHome, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 114, Short.MAX_VALUE)
                                 .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(txtDetail5, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtEmail, javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel11, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 249, Short.MAX_VALUE))
                                 .addGap(18, 18, 18)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(jLabel18, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
-                                    .addComponent(txtDetail2)))))
+                                    .addComponent(txtRemark)))))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel2Layout.createSequentialGroup()
@@ -305,20 +333,20 @@ public class manageStudents extends javax.swing.JFrame {
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(jLabel11)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtDetail5, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                                 .addComponent(jLabel18)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtDetail2, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(txtRemark, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(8, 8, 8)
                         .addComponent(jLabel9)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtDetail, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtMobile, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel17)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtDetail1, javax.swing.GroupLayout.DEFAULT_SIZE, 44, Short.MAX_VALUE)
+                            .addComponent(txtHome, javax.swing.GroupLayout.DEFAULT_SIZE, 44, Short.MAX_VALUE)
                             .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel16)
@@ -345,7 +373,7 @@ public class manageStudents extends javax.swing.JFrame {
                         .addComponent(calBirthday, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(jPanel2Layout.createSequentialGroup()
                             .addGap(142, 142, 142)
-                            .addComponent(txtGender, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(txtAddress, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -405,6 +433,10 @@ public class manageStudents extends javax.swing.JFrame {
     private void calBirthdayKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_calBirthdayKeyReleased
 
     }//GEN-LAST:event_calBirthdayKeyReleased
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        addStudent();
+    }//GEN-LAST:event_jButton4ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -470,14 +502,14 @@ public class manageStudents extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTextField txtDetail;
-    private javax.swing.JTextField txtDetail1;
-    private javax.swing.JTextField txtDetail2;
+    private javax.swing.JTextField txtAddress;
     private javax.swing.JTextField txtDetail3;
-    private javax.swing.JTextField txtDetail5;
+    private javax.swing.JTextField txtEmail;
     private javax.swing.JTextField txtFullName;
-    private javax.swing.JTextField txtGender;
+    private javax.swing.JTextField txtHome;
+    private javax.swing.JTextField txtMobile;
     private javax.swing.JTextField txtNameWithInitials;
     private javax.swing.JTextField txtNic;
+    private javax.swing.JTextField txtRemark;
     // End of variables declaration//GEN-END:variables
 }

@@ -23,9 +23,9 @@ import javax.swing.table.DefaultTableModel;
  * @author Amal
  */
 public class commonController {
-    
-    public static java.sql.Date getMysqlDateFromJDateChooser(JDateChooser dateChooser){
-        if(dateChooser.getDate() == null){
+
+    public static java.sql.Date getMysqlDateFromJDateChooser(JDateChooser dateChooser) {
+        if (dateChooser.getDate() == null) {
             return null;
         }
         java.sql.Date sqlDate = new java.sql.Date(dateChooser.getDate().getTime());
@@ -144,6 +144,9 @@ public class commonController {
             return false;
         }
     }
-    
+
+    public static boolean isNotEmpty(String value) {
+        return !value.isEmpty();
+    }
 
 }
