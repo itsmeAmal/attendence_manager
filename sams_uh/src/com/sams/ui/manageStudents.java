@@ -7,6 +7,7 @@ package com.sams.ui;
 
 import com.sams.controller.StudentController;
 import com.sams.controller.commonController;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -23,6 +24,7 @@ public class manageStudents extends javax.swing.JFrame {
      */
     public manageStudents() {
         initComponents();
+        getAllStudents();
     }
 
     private void addStudent() {
@@ -31,14 +33,72 @@ public class manageStudents extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Please enter full name !", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
+        if (txtNameWithInitials.getText().trim().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Please enter name with initials!", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        if (txtNic.getText().trim().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Please enter NIC !", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        if (calBirthday.getDate().toString().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Please select Date of Birth !", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        if (txtAddress.getText().trim().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Please enter txtAddress !", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        if (txtEmail.getText().trim().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Please enter email !", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        if (txtMobile.getText().trim().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Please enter mobile no !", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
         try {
-            StudentController.addStudent(txtFullName.getText().trim(), txtNameWithInitials.getText().trim(),
-                    txtNic.getText().trim(), commonController.getMysqlDateFromJDateChooser(calBirthday),
-                    comboGender.getSelectedItem().toString(), txtAddress.getText().trim(), txtMobile.getText().trim(),
-                    txtHome.getText().trim(), txtEmail.getText().trim(), txtRemark.getText().trim(), "");
+            int option = JOptionPane.showConfirmDialog(this, "Do you want to save new student details ?");
+            if (option == JOptionPane.YES_OPTION) {
+                boolean status = StudentController.addStudent(txtFullName.getText().trim(), txtNameWithInitials.getText().trim(),
+                        txtNic.getText().trim(), commonController.getMysqlDateFromJDateChooser(calBirthday),
+                        comboGender.getSelectedItem().toString(), txtAddress.getText().trim(), txtMobile.getText().trim(),
+                        txtHome.getText().trim(), txtEmail.getText().trim(), txtRemark.getText().trim(), "");
+                if (status) {
+                    clearAll();
+                }
+            }
+
         } catch (SQLException ex) {
             Logger.getLogger(manageStudents.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+
+    private void clearAll() {
+        txtFullName.setText("");
+        txtNameWithInitials.setText("");
+        txtNic.setText("");
+        txtAddress.setText("");
+        txtMobile.setText("");
+        txtHome.setText("");
+        txtEmail.setText("");
+        txtRemark.setText("");
+        comboGender.setSelectedIndex(0);
+        calBirthday.setDate(null);
+    }
+
+    private void getAllStudents() {
+        try {
+            String[] columnList = {"student_id", "student_full_name", "student_name_with_initials",
+                "student_nic", "student_dob", "student_gender", "student_address", "student_contact_mobile",
+                "student_contact_email", "student_contact_home", "student_remark_1"};
+            ResultSet rset = StudentController.getAllStudents();
+            commonController.loadDataToTable(tblStudentDetails, rset, columnList);
+        } catch (SQLException ex) {
+            Logger.getLogger(manageStudents.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
     }
 
     /**
@@ -70,7 +130,7 @@ public class manageStudents extends javax.swing.JFrame {
         txtRemark = new javax.swing.JTextField();
         jLabel18 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tblStudentDetails = new javax.swing.JTable();
         jSeparator1 = new javax.swing.JSeparator();
         txtDetail3 = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
@@ -83,8 +143,8 @@ public class manageStudents extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Student Management");
-        setMaximumSize(new java.awt.Dimension(1300, 700));
-        setMinimumSize(new java.awt.Dimension(1300, 700));
+        setMaximumSize(new java.awt.Dimension(1101, 643));
+        setMinimumSize(new java.awt.Dimension(1101, 643));
         setResizable(false);
 
         jPanel1.setMaximumSize(new java.awt.Dimension(1269, 643));
@@ -170,7 +230,7 @@ public class manageStudents extends javax.swing.JFrame {
         jLabel18.setForeground(new java.awt.Color(0, 0, 0));
         jLabel18.setText("Remark");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblStudentDetails.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -186,37 +246,37 @@ public class manageStudents extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
-        if (jTable1.getColumnModel().getColumnCount() > 0) {
-            jTable1.getColumnModel().getColumn(0).setMinWidth(0);
-            jTable1.getColumnModel().getColumn(0).setPreferredWidth(0);
-            jTable1.getColumnModel().getColumn(0).setMaxWidth(0);
-            jTable1.getColumnModel().getColumn(1).setMinWidth(0);
-            jTable1.getColumnModel().getColumn(1).setPreferredWidth(0);
-            jTable1.getColumnModel().getColumn(1).setMaxWidth(0);
-            jTable1.getColumnModel().getColumn(2).setResizable(false);
-            jTable1.getColumnModel().getColumn(3).setMinWidth(120);
-            jTable1.getColumnModel().getColumn(3).setPreferredWidth(120);
-            jTable1.getColumnModel().getColumn(3).setMaxWidth(120);
-            jTable1.getColumnModel().getColumn(4).setMinWidth(100);
-            jTable1.getColumnModel().getColumn(4).setPreferredWidth(100);
-            jTable1.getColumnModel().getColumn(4).setMaxWidth(100);
-            jTable1.getColumnModel().getColumn(5).setMinWidth(60);
-            jTable1.getColumnModel().getColumn(5).setPreferredWidth(60);
-            jTable1.getColumnModel().getColumn(5).setMaxWidth(60);
-            jTable1.getColumnModel().getColumn(6).setMinWidth(0);
-            jTable1.getColumnModel().getColumn(6).setPreferredWidth(0);
-            jTable1.getColumnModel().getColumn(6).setMaxWidth(0);
-            jTable1.getColumnModel().getColumn(7).setMinWidth(0);
-            jTable1.getColumnModel().getColumn(7).setPreferredWidth(0);
-            jTable1.getColumnModel().getColumn(7).setMaxWidth(0);
-            jTable1.getColumnModel().getColumn(8).setMinWidth(0);
-            jTable1.getColumnModel().getColumn(8).setPreferredWidth(0);
-            jTable1.getColumnModel().getColumn(8).setMaxWidth(0);
-            jTable1.getColumnModel().getColumn(9).setResizable(false);
-            jTable1.getColumnModel().getColumn(10).setMinWidth(0);
-            jTable1.getColumnModel().getColumn(10).setPreferredWidth(0);
-            jTable1.getColumnModel().getColumn(10).setMaxWidth(0);
+        jScrollPane1.setViewportView(tblStudentDetails);
+        if (tblStudentDetails.getColumnModel().getColumnCount() > 0) {
+            tblStudentDetails.getColumnModel().getColumn(0).setMinWidth(0);
+            tblStudentDetails.getColumnModel().getColumn(0).setPreferredWidth(0);
+            tblStudentDetails.getColumnModel().getColumn(0).setMaxWidth(0);
+            tblStudentDetails.getColumnModel().getColumn(1).setMinWidth(0);
+            tblStudentDetails.getColumnModel().getColumn(1).setPreferredWidth(0);
+            tblStudentDetails.getColumnModel().getColumn(1).setMaxWidth(0);
+            tblStudentDetails.getColumnModel().getColumn(2).setResizable(false);
+            tblStudentDetails.getColumnModel().getColumn(3).setMinWidth(120);
+            tblStudentDetails.getColumnModel().getColumn(3).setPreferredWidth(120);
+            tblStudentDetails.getColumnModel().getColumn(3).setMaxWidth(120);
+            tblStudentDetails.getColumnModel().getColumn(4).setMinWidth(100);
+            tblStudentDetails.getColumnModel().getColumn(4).setPreferredWidth(100);
+            tblStudentDetails.getColumnModel().getColumn(4).setMaxWidth(100);
+            tblStudentDetails.getColumnModel().getColumn(5).setMinWidth(60);
+            tblStudentDetails.getColumnModel().getColumn(5).setPreferredWidth(60);
+            tblStudentDetails.getColumnModel().getColumn(5).setMaxWidth(60);
+            tblStudentDetails.getColumnModel().getColumn(6).setMinWidth(0);
+            tblStudentDetails.getColumnModel().getColumn(6).setPreferredWidth(0);
+            tblStudentDetails.getColumnModel().getColumn(6).setMaxWidth(0);
+            tblStudentDetails.getColumnModel().getColumn(7).setMinWidth(0);
+            tblStudentDetails.getColumnModel().getColumn(7).setPreferredWidth(0);
+            tblStudentDetails.getColumnModel().getColumn(7).setMaxWidth(0);
+            tblStudentDetails.getColumnModel().getColumn(8).setMinWidth(0);
+            tblStudentDetails.getColumnModel().getColumn(8).setPreferredWidth(0);
+            tblStudentDetails.getColumnModel().getColumn(8).setMaxWidth(0);
+            tblStudentDetails.getColumnModel().getColumn(9).setResizable(false);
+            tblStudentDetails.getColumnModel().getColumn(10).setMinWidth(0);
+            tblStudentDetails.getColumnModel().getColumn(10).setPreferredWidth(0);
+            tblStudentDetails.getColumnModel().getColumn(10).setMaxWidth(0);
         }
 
         txtDetail3.setFont(new java.awt.Font("Ubuntu", 0, 18)); // NOI18N
@@ -436,6 +496,7 @@ public class manageStudents extends javax.swing.JFrame {
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         addStudent();
+        getAllStudents();
     }//GEN-LAST:event_jButton4ActionPerformed
 
     /**
@@ -501,7 +562,7 @@ public class manageStudents extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable tblStudentDetails;
     private javax.swing.JTextField txtAddress;
     private javax.swing.JTextField txtDetail3;
     private javax.swing.JTextField txtEmail;
