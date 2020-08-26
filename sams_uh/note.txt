@@ -1,0 +1,12 @@
+DROP TABLE IF EXISTS `sams_uh`.`attendance`;
+CREATE TABLE  `sams_uh`.`attendance` (
+  `attendance_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `attendance_student_id` int(10) unsigned DEFAULT NULL,
+  `attendance_date_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `attendance_module_id` int(10) unsigned DEFAULT NULL,
+  `attendance_lecture_room_id` int(10) unsigned DEFAULT NULL,
+  `attendance_lecturer_id` int(10) unsigned DEFAULT NULL,
+  `attendance_status` tinyint(1) unsigned DEFAULT NULL,
+  `attendance_detail` varchar(450) DEFAULT NULL,
+  PRIMARY KEY (`attendance_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
