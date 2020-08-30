@@ -20,21 +20,23 @@ import java.util.ArrayList;
  */
 public class AttendanceDaoImpl implements AttendanceDao {
 
-    private String SelectQuery = "select attendance_id, attendance_student_id,"
-            + " attendance_date_time, attendance_module_id, attendance_lecture_room_id,"
-            + " attendance_lecturer_id, attendance_status, attendance_detail attendance";
+    private String SelectQuery = "select attendance_id, attendance_student_id, attendance_date_time, attendance_module_id, "
+            + "attendance_lecture_room_id, attendance_lecturer_id, attendance_status, attendance_detail, "
+            + "attendance_date_out_time from attendance";
 
     @Override
     public boolean addAttendance(Attendance attendance) throws SQLException {
         Connection con = DatabaseConnection.getDatabaseConnection();
         PreparedStatement ps = con.prepareStatement("insert into attendance ( attendance_student_id, attendance_date_time, "
-                + "attendance_module_id, attendance_lecture_room_id, attendance_lecturer_id, attendance_detail) values (?,?,?,?,?,?)");
+                + "attendance_module_id, attendance_lecture_room_id, attendance_lecturer_id, "
+                + "attendance_detail, attendance_date_out_time) values (?,?,?,?,?,?,?,?)");
         ps.setInt(1, attendance.getStudentId());
         ps.setTimestamp(2, attendance.getAttendanceDate());
         ps.setInt(3, attendance.getModuleId());
         ps.setInt(4, attendance.getLectureRoomId());
         ps.setInt(5, attendance.getLecturerId());
         ps.setString(6, attendance.getDetail());
+        ps.setTimestamp(7, attendance.getAttendanceOutTime());
         ps.executeUpdate();
         ps.close();
         return true;

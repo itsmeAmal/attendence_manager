@@ -15,7 +15,8 @@ public class Attendance {
 
     private int Id;
     private int StudentId;
-    private Timestamp AttendanceDate;
+    private Timestamp AttendanceInDate;
+    private Timestamp AttendanceOutTime;
     private int ModuleId;
     private int LectureRoomId;
     private int LecturerId;
@@ -51,17 +52,17 @@ public class Attendance {
     }
 
     /**
-     * @return the AttendanceDate
+     * @return the AttendanceInDate
      */
     public Timestamp getAttendanceDate() {
-        return AttendanceDate;
+        return getAttendanceInDate();
     }
 
     /**
-     * @param AttendanceDate the AttendanceDate to set
+     * @param AttendanceDate the AttendanceInDate to set
      */
     public void setAttendanceDate(Timestamp AttendanceDate) {
-        this.AttendanceDate = AttendanceDate;
+        this.setAttendanceInDate(AttendanceDate);
     }
 
     /**
@@ -132,6 +133,34 @@ public class Attendance {
      */
     public void setStatus(int Status) {
         this.Status = Status;
+    }
+
+    /**
+     * @return the AttendanceInDate
+     */
+    public Timestamp getAttendanceInDate() {
+        return AttendanceInDate;
+    }
+
+    /**
+     * @param AttendanceInDate the AttendanceInDate to set
+     */
+    public void setAttendanceInDate(Timestamp AttendanceInDate) {
+        this.AttendanceInDate = AttendanceInDate;
+    }
+
+    /**
+     * @return the AttendanceOutTime
+     */
+    public Timestamp getAttendanceOutTime() {
+        return AttendanceOutTime;
+    }
+
+    /**
+     * @param AttendanceOutTime the AttendanceOutTime to set
+     */
+    public void setAttendanceOutTime(Timestamp AttendanceOutTime) {
+        this.AttendanceOutTime = AttendanceOutTime;
     }
 
 }

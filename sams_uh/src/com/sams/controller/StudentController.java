@@ -46,4 +46,35 @@ public class StudentController {
         return new StudentDaoImpl().getStudentResultsetByOneAttribute(attribute, condition, value);
     }
 
+    public static boolean isAvailableStudentByStudentId(String StudentCode) throws SQLException {
+        boolean status = false;
+        ResultSet rset = getStudentByOneAttribute("student_remark_1", commonConstants.Sql.EQUAL, StudentCode);
+        if (rset.next()) {
+            status = true;
+        }
+        return status;
+    }
+
+    public static Student GetStudentByStudentRegNo(String StudentCode) throws SQLException {
+        Student Student = null;
+        ResultSet rset = getStudentByOneAttribute("student_remark_1", commonConstants.Sql.EQUAL, StudentCode);
+        while (rset.next()) {
+            Student = new Student();
+            Student.setAddress(rset.getString("student_address"));
+            Student.setId(rset.getInt("student_id"));
+            Student.setFullName(rset.getString("student_full_name"));
+            Student.setNameWithInitials(rset.getString("student_name_with_initials"));
+            Student.setNic(rset.getString("student_nic"));
+            Student.setDateOfBirth(rset.getDate("student_dob"));
+            Student.setGender(rset.getString("student_gender"));
+            Student.setContactMobile(rset.getString("student_contact_mobile"));
+            Student.setContactEmail(rset.getString("student_contact_email"));
+            Student.setContactHome(rset.getString("student_contact_home"));
+            Student.setRemark_1(rset.getString("student_remark_1"));
+            Student.setRemark_2(rset.getString("student_remark_2"));
+            Student.setStatus(rset.getInt("student_status"));
+        }
+        return Student;
+    }
+
 }
