@@ -29,7 +29,7 @@ public class AttendanceDaoImpl implements AttendanceDao {
         Connection con = DatabaseConnection.getDatabaseConnection();
         PreparedStatement ps = con.prepareStatement("insert into attendance ( attendance_student_id, attendance_date_time, "
                 + "attendance_module_id, attendance_lecture_room_id, attendance_lecturer_id, "
-                + "attendance_detail, attendance_date_out_time) values (?,?,?,?,?,?,?,?)");
+                + "attendance_detail, attendance_date_out_time) values (?,?,?,?,?,?,?)");
         ps.setInt(1, attendance.getStudentId());
         ps.setTimestamp(2, attendance.getAttendanceDate());
         ps.setInt(3, attendance.getModuleId());

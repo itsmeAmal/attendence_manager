@@ -5,6 +5,7 @@
  */
 package com.sams.ui;
 
+import com.sams.controller.AttendanceController;
 import com.sams.controller.StudentController;
 import com.sams.model.Student;
 import java.awt.Color;
@@ -29,6 +30,8 @@ public class MarkAttendanceTouch extends javax.swing.JFrame {
     private static boolean isAvailableStudents = false;
 
     private static Student student = null;
+    
+    private static int ClickedButtonId = 0;
 
     /**
      * Creates new form MarkAttendanceTouch
@@ -61,11 +64,26 @@ public class MarkAttendanceTouch extends javax.swing.JFrame {
         try {
             if (StudentController.isAvailableStudentByStudentId(txtStudentRegNo.getText().trim())) {
                 student = StudentController.GetStudentByStudentRegNo(txtStudentRegNo.getText().trim());
+                String ModuleName = "";
+                if(ClickedButtonId==1){
+                    ModuleName = "Module One";
+                }else if(ClickedButtonId==2){
+                    ModuleName = "Module Two";
+                }else if(ClickedButtonId ==3){
+                    ModuleName = "Module Three";
+                }else {
+                    ModuleName = "Module Four";
+                }
+                
+                AttendanceController.addAttendanceRecord(student.getId(), ModuleName, 0, 0, 0);
+                
+                
                 lblStudenName.setText(student.getFullName());
                 lblStudentRegNo.setText(student.getRemark_1());
                 lblThankYou.setText("Updated ! Thank you !");
                 txtStudentRegNo.selectAll();
                 MODULE_SELECTED = false;
+                ModuleName = "";
                 
                 System.out.println(student.getNameWithInitials());
                 System.out.println(MODULE_ID);
@@ -87,6 +105,7 @@ public class MarkAttendanceTouch extends javax.swing.JFrame {
     }
 
     private void TouchButton(int ButtonId, boolean SubjectBoolean) {
+        ClickedButtonId = ButtonId;
         switch (ButtonId) {
             case 1:
                 if (SubjectBoolean) {
@@ -187,10 +206,12 @@ public class MarkAttendanceTouch extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Mark Attendance");
+        setBackground(new java.awt.Color(153, 0, 51));
         setMaximumSize(new java.awt.Dimension(642, 305));
         setMinimumSize(new java.awt.Dimension(642, 305));
         setResizable(false);
 
+        jPanel2.setBackground(new java.awt.Color(51, 0, 0));
         jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanel2.setMaximumSize(new java.awt.Dimension(1200, 638));
         jPanel2.setMinimumSize(new java.awt.Dimension(1200, 638));
@@ -459,7 +480,6 @@ public class MarkAttendanceTouch extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
     private javax.swing.JLabel lblStudenName;
     private javax.swing.JLabel lblStudentRegNo;
     private javax.swing.JLabel lblThankYou;
