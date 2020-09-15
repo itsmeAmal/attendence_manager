@@ -12,6 +12,7 @@ import java.awt.Color;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -93,6 +94,8 @@ public class MarkAttendanceTouch extends javax.swing.JFrame {
                 pnl3.setBackground(new Color(102, 153, 255));
                 pnl4.setBackground(new Color(102, 153, 255));
 
+            }else {
+                JOptionPane.showMessageDialog(this, "This id is not registered !");
             }
         } catch (SQLException ex) {
             Logger.getLogger(MarkAttendanceTouch.class.getName()).log(Level.SEVERE, null, ex);
@@ -432,7 +435,7 @@ public class MarkAttendanceTouch extends javax.swing.JFrame {
     }//GEN-LAST:event_pnl4MouseClicked
 
     private void txtStudentRegNoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtStudentRegNoKeyReleased
-        ValidateStudent();
+        
     }//GEN-LAST:event_txtStudentRegNoKeyReleased
 
     private void txtStudentRegNoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtStudentRegNoActionPerformed

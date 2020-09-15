@@ -4,11 +4,12 @@
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
 	<queryString>
-		<![CDATA[select count(attendance_id), student_full_name from attendance left join student on attendance_student_id=student_id
-group by student_full_name;]]>
+		<![CDATA[select count(attendance_id), student_full_name, attendance_detail from attendance left join student on attendance_student_id=student_id
+group by student_full_name, attendance_detail]]>
 	</queryString>
 	<field name="count(attendance_id)" class="java.lang.Long"/>
 	<field name="student_full_name" class="java.lang.String"/>
+	<field name="attendance_detail" class="java.lang.String"/>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
@@ -29,7 +30,7 @@ group by student_full_name;]]>
 	<columnHeader>
 		<band height="18" splitType="Stretch">
 			<staticText>
-				<reportElement x="-1" y="2" width="289" height="14"/>
+				<reportElement x="-1" y="2" width="178" height="14"/>
 				<box leftPadding="5">
 					<rightPen lineWidth="0.75"/>
 				</box>
@@ -39,7 +40,7 @@ group by student_full_name;]]>
 				<text><![CDATA[Student Name]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="305" y="2" width="120" height="14"/>
+				<reportElement x="177" y="2" width="128" height="14"/>
 				<box leftPadding="5">
 					<rightPen lineWidth="0.75"/>
 				</box>
@@ -51,19 +52,34 @@ group by student_full_name;]]>
 			<line>
 				<reportElement x="1" y="16" width="554" height="1"/>
 			</line>
+			<staticText>
+				<reportElement x="307" y="2" width="128" height="14"/>
+				<box leftPadding="5">
+					<rightPen lineWidth="0.75"/>
+				</box>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Module]]></text>
+			</staticText>
 		</band>
 	</columnHeader>
 	<detail>
 		<band height="15" splitType="Stretch">
 			<textField>
-				<reportElement x="305" y="0" width="120" height="15"/>
-				<textElement/>
+				<reportElement x="177" y="0" width="109" height="15"/>
+				<textElement textAlignment="Right"/>
 				<textFieldExpression><![CDATA[$F{count(attendance_id)}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="4" y="0" width="270" height="15"/>
+				<reportElement x="4" y="0" width="173" height="15"/>
 				<textElement/>
 				<textFieldExpression><![CDATA[$F{student_full_name}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="310" y="0" width="109" height="15"/>
+				<textElement textAlignment="Left"/>
+				<textFieldExpression><![CDATA[$F{attendance_detail}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>

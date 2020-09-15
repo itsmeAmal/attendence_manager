@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report1" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
 	<property name="ireport.zoom" value="1.9487171000000014"/>
-	<property name="ireport.x" value="0"/>
+	<property name="ireport.x" value="95"/>
 	<property name="ireport.y" value="0"/>
+	<parameter name="total_days" class="java.lang.Double"/>
 	<queryString>
-		<![CDATA[select * from attendance left join student on attendance_student_id=student_id;]]>
+		<![CDATA[select count(attendance_student_id), student_full_name, attendance_id, attendance_student_id, attendance_date_time, attendance_module_id, attendance_lecture_room_id, attendance_lecturer_id, attendance_status, attendance_detail, attendance_date_out_time, student_id, student_full_name, student_name_with_initials, student_nic, student_dob, student_gender, student_address, student_contact_mobile, student_contact_email, student_contact_home, student_remark_1, student_remark_2, student_status from attendance left join student on attendance_student_id=student_id group by student_full_name]]>
 	</queryString>
+	<field name="count(attendance_student_id)" class="java.lang.Long"/>
+	<field name="student_full_name" class="java.lang.String"/>
 	<field name="attendance_id" class="java.lang.Long"/>
 	<field name="attendance_student_id" class="java.lang.Long"/>
 	<field name="attendance_date_time" class="java.sql.Timestamp"/>
@@ -16,7 +19,6 @@
 	<field name="attendance_detail" class="java.lang.String"/>
 	<field name="attendance_date_out_time" class="java.sql.Timestamp"/>
 	<field name="student_id" class="java.lang.Long"/>
-	<field name="student_full_name" class="java.lang.String"/>
 	<field name="student_name_with_initials" class="java.lang.String"/>
 	<field name="student_nic" class="java.lang.String"/>
 	<field name="student_dob" class="java.sql.Date"/>
@@ -28,6 +30,9 @@
 	<field name="student_remark_1" class="java.lang.String"/>
 	<field name="student_remark_2" class="java.lang.String"/>
 	<field name="student_status" class="java.lang.Boolean"/>
+	<variable name="rating" class="java.lang.Double">
+		<variableExpression><![CDATA[($F{count(attendance_student_id)}/$P{total_days})*100]]></variableExpression>
+	</variable>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
@@ -48,7 +53,7 @@
 	<columnHeader>
 		<band height="18" splitType="Stretch">
 			<staticText>
-				<reportElement x="-1" y="2" width="150" height="14"/>
+				<reportElement x="-1" y="2" width="123" height="14"/>
 				<box leftPadding="5">
 					<rightPen lineWidth="0.75"/>
 				</box>
@@ -58,7 +63,7 @@
 				<text><![CDATA[Date And Time ]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="149" y="2" width="120" height="14"/>
+				<reportElement x="123" y="2" width="120" height="14"/>
 				<box leftPadding="5">
 					<rightPen lineWidth="0.75"/>
 				</box>
@@ -68,7 +73,7 @@
 				<text><![CDATA[Student Full Name ]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="269" y="2" width="141" height="14"/>
+				<reportElement x="243" y="2" width="104" height="14"/>
 				<box leftPadding="5">
 					<rightPen lineWidth="0.75"/>
 				</box>
@@ -78,7 +83,7 @@
 				<text><![CDATA[Student NIC]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="410" y="2" width="144" height="14"/>
+				<reportElement x="348" y="2" width="109" height="14"/>
 				<box leftPadding="5"/>
 				<textElement>
 					<font isBold="true"/>
@@ -88,37 +93,54 @@
 			<line>
 				<reportElement x="1" y="16" width="554" height="1"/>
 			</line>
+			<staticText>
+				<reportElement x="457" y="2" width="86" height="14"/>
+				<box leftPadding="5">
+					<leftPen lineWidth="0.75"/>
+				</box>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[80% Rating]]></text>
+			</staticText>
 		</band>
 	</columnHeader>
 	<detail>
 		<band height="15" splitType="Stretch">
 			<textField pattern="dd/MM/yyyy h.mm a">
-				<reportElement x="0" y="-1" width="124" height="15"/>
+				<reportElement x="0" y="-1" width="97" height="15"/>
 				<textElement textAlignment="Right">
 					<font size="9"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{attendance_date_time}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="270" y="-1" width="141" height="15"/>
+				<reportElement x="244" y="-1" width="104" height="15"/>
 				<textElement>
 					<font size="9"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{student_nic}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="411" y="-1" width="144" height="15"/>
+				<reportElement x="349" y="-1" width="109" height="15"/>
 				<textElement>
 					<font size="9"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{attendance_detail}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="150" y="-1" width="120" height="15"/>
+				<reportElement x="124" y="-1" width="120" height="15"/>
 				<textElement>
 					<font size="9"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{student_full_name}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00;-#,##0.00" isBlankWhenNull="true">
+				<reportElement x="458" y="0" width="62" height="14"/>
+				<textElement textAlignment="Right">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{rating}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>

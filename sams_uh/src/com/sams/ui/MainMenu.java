@@ -39,23 +39,6 @@ public class MainMenu extends javax.swing.JFrame {
         JDesktopPane pane = new JDesktopPane();
     }
 
-    public void printAttendanceReport() {
-        try {
-            //            String Level = comboLevel.getSelectedItem().toString();
-            HashMap<String, Object> hm = new HashMap<>();
-            Connection con = DatabaseConnection.getDatabaseConnection();
-            JasperDesign jsd = JRXmlLoader.load("reports\\report1.jrxml"); //src\\cazzendra\\pos\\
-            JasperReport jr = JasperCompileManager.compileReport(jsd);
-//            hm.put("level", Level);
-            JasperPrint jp = JasperFillManager.fillReport(jr, hm, con);
-//          JasperViewer jasperViewer = new JasperViewer(jp, false);
-//          JasperPrintManager.printReport(jp, false);
-            JasperViewer jasperViewer = new JasperViewer(jp, false);
-            jasperViewer.setVisible(true);
-        } catch (SQLException | JRException ex) {
-            Logger.getLogger(MainMenu.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
     public void printBasedOnLecturesReport() {
         try {
             //            String Level = comboLevel.getSelectedItem().toString();
@@ -96,6 +79,7 @@ public class MainMenu extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Main Menu");
@@ -120,7 +104,7 @@ public class MainMenu extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel4.setText("Attendance Report");
+        jLabel4.setText("80% Attendance Report");
         jLabel4.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel4MouseClicked(evt);
@@ -131,17 +115,11 @@ public class MainMenu extends javax.swing.JFrame {
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(29, 29, 29)
-                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(29, Short.MAX_VALUE))
+            .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 320, Short.MAX_VALUE)
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(16, 16, 16)
-                .addComponent(jLabel4)
-                .addContainerGap(10, Short.MAX_VALUE))
+            .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
         );
 
         jDesktopPane1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 380, 320, 50));
@@ -225,6 +203,9 @@ public class MainMenu extends javax.swing.JFrame {
         jLabel8.setText("Student Management");
         jDesktopPane1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 50, -1, -1));
 
+        jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/sams/images/SltLogo.png"))); // NOI18N
+        jDesktopPane1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 440, 280, 90));
+
         jPanel2.add(jDesktopPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, 1090, 560));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -244,7 +225,6 @@ public class MainMenu extends javax.swing.JFrame {
 
     private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
         new manageStudents().setVisible(true);
-
     }//GEN-LAST:event_jLabel2MouseClicked
 
     private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
@@ -256,7 +236,7 @@ public class MainMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabel3MouseEntered
 
     private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
-        printAttendanceReport();
+        new AttendanceReport().setVisible(true);
     }//GEN-LAST:event_jLabel4MouseClicked
 
     private void jLabel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseClicked
@@ -309,6 +289,7 @@ public class MainMenu extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
