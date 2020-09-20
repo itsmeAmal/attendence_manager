@@ -60,6 +60,10 @@ public class manageStudents extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Please enter mobile no !", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
+        if (txtRegNo.getText().trim().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Please enter Registration no !", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
 
         try {
             int option = JOptionPane.showConfirmDialog(this, "Do you want to save new student details ?");
@@ -67,7 +71,7 @@ public class manageStudents extends javax.swing.JFrame {
                 boolean status = StudentController.addStudent(txtFullName.getText().trim(), txtNameWithInitials.getText().trim(),
                         txtNic.getText().trim(), commonController.getMysqlDateFromJDateChooser(calBirthday),
                         comboGender.getSelectedItem().toString(), txtAddress.getText().trim(), txtMobile.getText().trim(),
-                        txtHome.getText().trim(), txtEmail.getText().trim(), txtRemark.getText().trim(), "");
+                        txtHome.getText().trim(), txtEmail.getText().trim(), txtRegNo.getText().trim(), "");
                 if (status) {
                     clearAll();
                 }
@@ -86,7 +90,7 @@ public class manageStudents extends javax.swing.JFrame {
         txtMobile.setText("");
         txtHome.setText("");
         txtEmail.setText("");
-        txtRemark.setText("");
+        txtRegNo.setText("");
         comboGender.setSelectedIndex(0);
         calBirthday.setDate(null);
     }
@@ -158,7 +162,7 @@ public class manageStudents extends javax.swing.JFrame {
         jLabel16 = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
         txtHome = new javax.swing.JTextField();
-        txtRemark = new javax.swing.JTextField();
+        txtRegNo = new javax.swing.JTextField();
         jLabel18 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblStudentDetails = new javax.swing.JTable();
@@ -268,11 +272,11 @@ public class manageStudents extends javax.swing.JFrame {
         txtHome.setSelectionColor(new java.awt.Color(255, 255, 0));
         jPanel2.add(txtHome, new org.netbeans.lib.awtextra.AbsoluteConstraints(545, 187, 250, 44));
 
-        txtRemark.setFont(new java.awt.Font("Ubuntu", 0, 18)); // NOI18N
-        txtRemark.setToolTipText("Details / Remarks");
-        txtRemark.setSelectedTextColor(new java.awt.Color(0, 0, 0));
-        txtRemark.setSelectionColor(new java.awt.Color(255, 255, 0));
-        jPanel2.add(txtRemark, new org.netbeans.lib.awtextra.AbsoluteConstraints(812, 43, 250, 44));
+        txtRegNo.setFont(new java.awt.Font("Ubuntu", 0, 18)); // NOI18N
+        txtRegNo.setToolTipText("Details / Remarks");
+        txtRegNo.setSelectedTextColor(new java.awt.Color(0, 0, 0));
+        txtRegNo.setSelectionColor(new java.awt.Color(255, 255, 0));
+        jPanel2.add(txtRegNo, new org.netbeans.lib.awtextra.AbsoluteConstraints(812, 43, 250, 44));
 
         jLabel18.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel18.setForeground(new java.awt.Color(255, 255, 255));
@@ -514,7 +518,7 @@ public class manageStudents extends javax.swing.JFrame {
     private javax.swing.JTextField txtMobile;
     private javax.swing.JTextField txtNameWithInitials;
     private javax.swing.JTextField txtNic;
-    private javax.swing.JTextField txtRemark;
+    private javax.swing.JTextField txtRegNo;
     private javax.swing.JTextField txtSearch;
     // End of variables declaration//GEN-END:variables
 }
