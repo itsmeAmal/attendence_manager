@@ -24,6 +24,7 @@ public class Login extends javax.swing.JFrame {
     private void login() {
        if(txtUserName.getText().trim().equalsIgnoreCase("Admin") && txtPwField.getText().equals("1234")){
            new MainMenu().setVisible(true); 
+           this.dispose();
        }else{
            JOptionPane.showMessageDialog(this, "Username or Password is incorrect !"); 
        }
@@ -138,7 +139,7 @@ public class Login extends javax.swing.JFrame {
         lblTime.setForeground(new java.awt.Color(255, 255, 51));
         panel.add(lblTime, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 20, -1, -1));
 
-        jLabel2.setBackground(new java.awt.Color(153, 0, 51));
+        jLabel2.setBackground(new java.awt.Color(204, 204, 0));
         panel.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 570, 410));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
