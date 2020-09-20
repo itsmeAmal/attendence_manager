@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report1" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
 	<property name="ireport.zoom" value="1.9487171000000014"/>
-	<property name="ireport.x" value="95"/>
+	<property name="ireport.x" value="139"/>
 	<property name="ireport.y" value="0"/>
-	<parameter name="total_days" class="java.lang.Double"/>
+	<parameter name="total_days" class="java.lang.Integer"/>
 	<queryString>
 		<![CDATA[select count(attendance_student_id), student_full_name, attendance_id, attendance_student_id, attendance_date_time, attendance_module_id, attendance_lecture_room_id, attendance_lecturer_id, attendance_status, attendance_detail, attendance_date_out_time, student_id, student_full_name, student_name_with_initials, student_nic, student_dob, student_gender, student_address, student_contact_mobile, student_contact_email, student_contact_home, student_remark_1, student_remark_2, student_status from attendance left join student on attendance_student_id=student_id group by student_full_name]]>
 	</queryString>
@@ -98,7 +98,7 @@
 				<box leftPadding="5">
 					<leftPen lineWidth="0.75"/>
 				</box>
-				<textElement>
+				<textElement textAlignment="Right">
 					<font isBold="true"/>
 				</textElement>
 				<text><![CDATA[80% Rating]]></text>

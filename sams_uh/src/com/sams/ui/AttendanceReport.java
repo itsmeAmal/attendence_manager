@@ -5,13 +5,13 @@
  */
 package com.sams.ui;
 
+import com.sams.controller.commonController;
 import com.sams.databaseconnection.DatabaseConnection;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JOptionPane;
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperCompileManager;
 import net.sf.jasperreports.engine.JasperFillManager;
@@ -38,7 +38,7 @@ public class AttendanceReport extends javax.swing.JFrame {
     public void printAttendanceReport() {
         try {
             HashMap<String, Object> hm = new HashMap<>();
-            hm.put("total_days", txtTotalLecDays.getText().trim());
+            hm.put("total_days", commonController.getBigDecimalOrZeroFromString(txtTotalLecDays.getText())); 
             Connection con = DatabaseConnection.getDatabaseConnection();
             JasperDesign jsd = JRXmlLoader.load("reports\\report1.jrxml"); //src\\cazzendra\\pos\\
             JasperReport jr = JasperCompileManager.compileReport(jsd);
@@ -65,7 +65,7 @@ public class AttendanceReport extends javax.swing.JFrame {
         jLabel12 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Login ");
         setMaximumSize(new java.awt.Dimension(353, 239));
         setMinimumSize(new java.awt.Dimension(353, 239));
@@ -107,11 +107,13 @@ public class AttendanceReport extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panel, javax.swing.GroupLayout.PREFERRED_SIZE, 353, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(panel, javax.swing.GroupLayout.DEFAULT_SIZE, 375, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panel, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(panel, javax.swing.GroupLayout.PREFERRED_SIZE, 278, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
