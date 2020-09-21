@@ -63,7 +63,7 @@
 				<text><![CDATA[Date And Time ]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="123" y="2" width="120" height="14"/>
+				<reportElement x="123" y="2" width="178" height="14"/>
 				<box leftPadding="5">
 					<rightPen lineWidth="0.75"/>
 				</box>
@@ -73,7 +73,7 @@
 				<text><![CDATA[Student Full Name ]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="243" y="2" width="104" height="14"/>
+				<reportElement x="301" y="2" width="156" height="14"/>
 				<box leftPadding="5">
 					<rightPen lineWidth="0.75"/>
 				</box>
@@ -81,14 +81,6 @@
 					<font isBold="true"/>
 				</textElement>
 				<text><![CDATA[Student NIC]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="348" y="2" width="109" height="14"/>
-				<box leftPadding="5"/>
-				<textElement>
-					<font isBold="true"/>
-				</textElement>
-				<text><![CDATA[Attended Module]]></text>
 			</staticText>
 			<line>
 				<reportElement x="1" y="16" width="554" height="1"/>
@@ -115,21 +107,14 @@
 				<textFieldExpression><![CDATA[$F{attendance_date_time}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="244" y="-1" width="104" height="15"/>
+				<reportElement x="301" y="-1" width="156" height="15"/>
 				<textElement>
 					<font size="9"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{student_nic}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="349" y="-1" width="109" height="15"/>
-				<textElement>
-					<font size="9"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{attendance_detail}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="124" y="-1" width="120" height="15"/>
+				<reportElement x="124" y="-1" width="177" height="15"/>
 				<textElement>
 					<font size="9"/>
 				</textElement>
